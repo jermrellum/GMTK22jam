@@ -5,24 +5,20 @@ using UnityEngine.UI;
 
 public class BulletBox : MonoBehaviour
 {
-
-    public Texture2D cursorTexture;
-    private AudioSource loadSound;
+    [HideInInspector] public AudioSource loadSound;
     private AudioSource clickSound;
     private AudioSource fireSound;
     public GameObject gunFab;
     private GameObject gg;
-    private readonly CursorMode cursorMode = CursorMode.Auto;
-    private Vector2 hotSpot = new(6.0f, 0.0f);
-    private Text urt;
+    [HideInInspector] public Text urt;
 
-    private int bulletDelay = -1;
-    private bool fireTime;
-    [SerializeField] private int framesWaitAfterBox = 45;
+    [HideInInspector] public int bulletDelay = -1;
+    [HideInInspector] public bool fireTime;
+    public int framesWaitAfterBox = 45;
     [SerializeField] private int framesWaitTweenShots = 20;
     private int shotWaitCount = 0;
-    bool[] gunClip = new bool[6];
-    private int clipPosition = 0;
+    [HideInInspector] public bool[] gunClip = new bool[6];
+    [HideInInspector] public int clipPosition = 0;
 
     public int bulletCount = 1;
     public int initBulletCount = 1;
@@ -84,41 +80,6 @@ public class BulletBox : MonoBehaviour
             {
                 shotWaitCount--;
             }
-        }
-    }
-
-    private void OnMouseEnter()
-    {
-        if(bulletCount > 0)
-        { 
-            rend.material.color = Color.yellow;
-            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-        }
-    }
-
-    private void OnMouseExit()
-    {
-        rend.material.color = Color.white;
-        Cursor.SetCursor(null, Vector2.zero, cursorMode);
-    }
-
-    private void OnMouseDown()
-    {
-        if (!fireTime && bulletCount > 0)
-        {
-            bulletCount--;
-            loadSound.Play();
-            gunClip[clipPosition] = true;
-            clipPosition++;
-
-            if (bulletCount == 0)
-            {
-                rend.material.color = Color.white;
-                Cursor.SetCursor(null, Vector2.zero, cursorMode);
-                bulletDelay = framesWaitAfterBox;
-            }
-            
-            urt.text = "Take " + bulletCount + " bullets";
         }
     }
 
