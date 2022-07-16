@@ -200,12 +200,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a7e45fdc569e847b1b30c3a05799e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  framesToWaitAfterRoll: 50
   yThrowMin: 3
   yThrowMax: 5.5
   zThrowMin: 1
   zThrowMax: 2.2
   dieSpawnY: 0.4
   dieSpawnZ: -9.8
+  gunFab: {fileID: 7372287963440301483, guid: dc368c3a2c0b0024396b6864ad07d388, type: 3}
+  boxFab: {fileID: 8747691655739383874, guid: 5e0a87ac0df24824cb9dacb7287f1dd5, type: 3}
+  cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
 --- !u!54 &3443363391647976133
 Rigidbody:
   m_ObjectHideFlags: 0

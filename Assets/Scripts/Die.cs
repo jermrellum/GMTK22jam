@@ -7,14 +7,26 @@ public class Die : MonoBehaviour
 {
     private Renderer rend;
     private bool rolled = false;
+    private bool landed = false;
+    private int diceSoundCountDelay = 20;
+    private int diceSoundCount = -1;
+    private bool diceSoundPlayed = false;
     private Rigidbody rb;
 
+    [SerializeField] private int framesToWaitAfterRoll = 0;
+    private int waitDelay;
     [SerializeField] private float yThrowMin = 3.5f;
     [SerializeField] private float yThrowMax = 6.5f;
     [SerializeField] private float zThrowMin = 1.5f;
     [SerializeField] private float zThrowMax = 2.5f;
     [SerializeField] private float dieSpawnY = 0.0f;
     [SerializeField] private float dieSpawnZ = -10.0f;
+
+    [SerializeField] private GameObject boxFab;
+
+    public Texture2D cursorTexture;
+    private CursorMode cursorMode = CursorMode.Auto;
+    private Vector2 hotSpot = new Vector2(6.0f, 0.0f);
 
     private void Start()
     {
@@ -25,17 +37,25 @@ public class Die : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        rend.material.color = Color.yellow;
+        if (!rolled)
+        {
+            rend.material.color = Color.yellow;
+            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        }
     }
 
     private void OnMouseExit()
     {
         rend.material.color = Color.red;
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
 
     private void OnMouseDown()
     {
-        RollDie();
+        if (!rolled)
+        {
+            RollDie();
+        }
     }
 
     private void RollDie()
@@ -51,12 +71,8 @@ public class Die : MonoBehaviour
         float yThrow = Random.Range(yThrowMin, yThrowMax);
 
         float yThrowDiff = yThrowMax - yThrowMin;
-
-
         float yThrowPercent = (yThrow - yThrowMin) / yThrowDiff;
-
         float zThrowDiff = zThrowMax - zThrowMin;
-
         float zThrow = zThrowMin + zThrowDiff * (1 - yThrowPercent);
 
         rb.velocity = new Vector3(xThrow, yThrow, zThrow);
@@ -68,6 +84,7 @@ public class Die : MonoBehaviour
         rb.AddTorque(avX, avY, avZ);
 
         rolled = true;
+        diceSoundCount = diceSoundCountDelay;
         
     }
 
@@ -92,7 +109,7 @@ public class Die : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         /*
          *  x  0,  0,    0,  0
@@ -103,17 +120,53 @@ public class Die : MonoBehaviour
          * 
          * */
 
+        if(diceSoundCount > 0)
+        {
+            diceSoundCount--;
+        }
+
+        if (!diceSoundPlayed && diceSoundCount == 0 && transform.position.y < 0.8f)
+        {
+            diceSoundPlayed = true;
+            GameObject dss = GameObject.Find("diceSoundSource");
+            AudioSource diceSound = dss.GetComponent<AudioSource>();
+            diceSound.Play();
+        }
+
         if (rolled && rb.velocity.y == 0 && rb.velocity.z == 0)
         {
-            int dx = Mathf.RoundToInt(transform.rotation.eulerAngles.x);
-            int dz = Mathf.RoundToInt(transform.rotation.eulerAngles.z);
+            if(!landed)
+            {
+                landed = true;
+                waitDelay = framesToWaitAfterRoll;
+            }
 
-            int rollValue = GetLandedOn(dx, dz);
+            if (waitDelay == 0)
+            {
+                int dx = Mathf.RoundToInt(transform.rotation.eulerAngles.x);
+                int dz = Mathf.RoundToInt(transform.rotation.eulerAngles.z);
 
-            GameObject ur = GameObject.Find("You rolled");
+                int rollValue = GetLandedOn(dx, dz);
 
-            Text urt = ur.GetComponent<Text>();
-            urt.text = "You rolled " + rollValue;
+                GameObject ur = GameObject.Find("You rolled");
+
+                Text urt = ur.GetComponent<Text>();
+                urt.text = "Take " + rollValue + " bullets";
+
+                GenerateBoxAndGun(rollValue);
+            }
+            else
+            {
+                waitDelay--;
+            }
         }
+    }
+    private void GenerateBoxAndGun(int bullets)
+    {
+        GameObject box = Instantiate(boxFab, new Vector3(0.17f, 0.5f, -9.1f), Quaternion.identity);
+        BulletBox bb = box.GetComponent<BulletBox>();
+        bb.bulletCount = bullets;
+        bb.initBulletCount = bullets;
+        Destroy(this.gameObject);
     }
 }

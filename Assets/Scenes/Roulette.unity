@@ -796,7 +796,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 954647c96b338764eafb8871554fd706, type: 3}
     m_FontSize: 53
     m_FontStyle: 1
     m_BestFit: 0
@@ -808,7 +808,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You haven't rolled
+  m_Text: 
 --- !u!222 &1350821880
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -928,6 +928,10 @@ PrefabInstance:
     - target: {fileID: 3443363391647976131, guid: 503e7b6c84752ba409e9f3222a2f6126, type: 3}
       propertyPath: m_Name
       value: Die
+      objectReference: {fileID: 0}
+    - target: {fileID: 3443363391647976132, guid: 503e7b6c84752ba409e9f3222a2f6126, type: 3}
+      propertyPath: framesToWaitAfterDieRoll
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3443363391647976135, guid: 503e7b6c84752ba409e9f3222a2f6126, type: 3}
       propertyPath: m_RootOrder
