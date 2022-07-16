@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     private Vector2 hotSpot = new(6.0f, 0.0f);
     public Texture2D cursorTexture;
     private BulletBox bb;
+    [SerializeField] private GameObject bulletInRevolver;
 
     private void Start()
     {
@@ -29,7 +30,7 @@ public class Bullet : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!bb.fireTime && bb.bulletCount > 0)
+        if (!bb.fireTime && bb.bulletCount > 0 && bb.ctfCount == 0)
         {
             bb.bulletCount--;
             bb.loadSound.Play();
@@ -50,6 +51,12 @@ public class Bullet : MonoBehaviour
             }
 
             bb.urt.text = "Take " + bb.bulletCount + " bullet" + theS;
+
+            GameObject rvr = GameObject.Find("Revolver");
+
+            Instantiate(bulletInRevolver, new Vector3(-0.4137f, 0.776136f, -9.235f), Quaternion.identity, rvr.transform);
+
+            bb.ctfCount = bb.cylinderTurnFrames;
 
             Destroy(this.gameObject);
         }

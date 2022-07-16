@@ -19,6 +19,10 @@ public class BulletBox : MonoBehaviour
     private int shotWaitCount = 0;
     [HideInInspector] public bool[] gunClip = new bool[6];
     [HideInInspector] public int clipPosition = 0;
+    public int cylinderTurnFrames = 15;
+    [HideInInspector] public int ctfCount = 0;
+
+    private GameObject rvr;
 
     public int bulletCount = 1;
     public int initBulletCount = 1;
@@ -36,6 +40,8 @@ public class BulletBox : MonoBehaviour
         clickSound = css.GetComponent<AudioSource>();
         GameObject fss = GameObject.Find("fireSoundSource");
         fireSound = fss.GetComponent<AudioSource>();
+
+        rvr = GameObject.Find("Revolver"); 
 
         for (int i=0; i<gunClip.Length; i++)
         {
@@ -59,13 +65,23 @@ public class BulletBox : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(bulletDelay > 0)
+        if (ctfCount > 0)
+        {
+            ctfCount--;
+
+            float rotateAmt = 60.0f / cylinderTurnFrames;
+
+            rvr.transform.rotation = Quaternion.Euler(new Vector3(rvr.transform.rotation.eulerAngles.x, rvr.transform.rotation.eulerAngles.y, rvr.transform.rotation.eulerAngles.z + rotateAmt));
+        }
+        if (bulletDelay > 0)
         {
             bulletDelay--;
         }
-        else if(!fireTime && bulletDelay == 0)
+        else if (!fireTime && bulletDelay == 0)
         {
             urt.text = "Left-click to fire";
+
+            rvr.transform.localPosition = new Vector3(-0.0659f, 0.108f, -0.65f);
             gg.transform.rotation = Quaternion.Euler(new Vector3(-15.66f, -202.9f, -2.4f));
             gg.transform.position = new Vector3(0.06f, 0.75f, -10.17f);
 
@@ -74,9 +90,9 @@ public class BulletBox : MonoBehaviour
             clipPosition = Random.Range(0, 6);
         }
 
-        if(fireTime)
+        if (fireTime)
         {
-            if(shotWaitCount > 0)
+            if (shotWaitCount > 0)
             {
                 shotWaitCount--;
             }
