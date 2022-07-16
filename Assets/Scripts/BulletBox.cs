@@ -117,8 +117,15 @@ public class BulletBox : MonoBehaviour
                 Cursor.SetCursor(null, Vector2.zero, cursorMode);
                 bulletDelay = framesWaitAfterBox;
             }
-            
-            urt.text = "Take " + bulletCount + " bullets";
+
+            string theS = "s";
+
+            if(bulletCount == 1)
+            {
+                theS = "";
+            }
+
+            urt.text = "Take " + bulletCount + " bullet" + theS;
         }
     }
 

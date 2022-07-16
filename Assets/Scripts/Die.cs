@@ -99,8 +99,8 @@ public class Die : MonoBehaviour
                 switch(dz)
                 {
                     case 0: return 2;
-                    case 90: return 1;
-                    case 270: return 6;
+                    case 90: return 6;
+                    case 270: return 1;
                     case 180: return 5;
 
                     default: return 0;
