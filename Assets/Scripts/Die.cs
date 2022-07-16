@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Die : MonoBehaviour
 {
     private Renderer rend;
-    private bool unrolled;
+    private bool rolled = false;
     private Rigidbody rb;
 
     [SerializeField] private float yThrowMin = 3.5f;
@@ -65,5 +66,54 @@ public class Die : MonoBehaviour
         float avZ = Random.Range(1, 500);
 
         rb.AddTorque(avX, avY, avZ);
+
+        rolled = true;
+        
+    }
+
+    private int GetLandedOn(int dx, int dz)
+    {
+        switch (dx)
+        {
+            case 180: return 5;
+            case 270: return 4;
+            case 90: return 3;
+            case 0: 
+                switch(dz)
+                {
+                    case 0: return 2;
+                    case 90: return 1;
+                    case 270: return 6;
+                    case 180: return 5;
+
+                    default: return 0;
+                }
+            default: return 0;
+        }
+    }
+
+    private void Update()
+    {
+        /*
+         *  x  0,  0,    0,  0
+            y  n,  n,    n,  n
+            z 90, -90, 180,  0
+
+            n  1,  6,    5,  2
+         * 
+         * */
+
+        if (rolled && rb.velocity.y == 0 && rb.velocity.z == 0)
+        {
+            int dx = Mathf.RoundToInt(transform.rotation.eulerAngles.x);
+            int dz = Mathf.RoundToInt(transform.rotation.eulerAngles.z);
+
+            int rollValue = GetLandedOn(dx, dz);
+
+            GameObject ur = GameObject.Find("You rolled");
+
+            Text urt = ur.GetComponent<Text>();
+            urt.text = "You rolled " + rollValue;
+        }
     }
 }
