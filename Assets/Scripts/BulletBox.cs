@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BulletBox : MonoBehaviour
 {
@@ -61,6 +62,11 @@ public class BulletBox : MonoBehaviour
                 }
             }
         }
+
+        if(shotWaitCount == 1)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
     }
 
     private void FixedUpdate()
@@ -106,7 +112,7 @@ public class BulletBox : MonoBehaviour
         if(gunClip[clipPosition])
         {
             fireSound.Play();
-            urt.text = "You died";
+            urt.text = "";
             shotWaitCount = -1;
             GameObject cam = GameObject.Find("Main Camera");
             cam.transform.position = new Vector3(0.0f, 0.0f, 9.0f);
