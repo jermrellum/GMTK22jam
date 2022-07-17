@@ -115,7 +115,7 @@ public class BulletBox : MonoBehaviour
             urt.text = "";
             shotWaitCount = -1;
             GameObject cam = GameObject.Find("Main Camera");
-            cam.transform.position = new Vector3(0.0f, 0.0f, 9.0f);
+            cam.transform.position = new Vector3(0.0f, 0.0f, 15.0f);
         }
         else
         {

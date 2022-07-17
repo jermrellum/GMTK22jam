@@ -431,10 +431,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUpPrefab: {fileID: 3302240728681960955, guid: 46574ef9bb9d3f64094af19861469f6a, type: 3}
+  bossPrefab: {fileID: 3302240728681960955, guid: a009615c6308290499e8efc51a242382, type: 3}
   popX: 8
   popY: 6
   popZ: 0
   popAY: 50
+  framesWaitOnBoss: 140
+  fwobCount: 0
 --- !u!4 &282877523
 Transform:
   m_ObjectHideFlags: 0
