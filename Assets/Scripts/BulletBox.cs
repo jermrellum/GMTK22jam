@@ -12,11 +12,12 @@ public class BulletBox : MonoBehaviour
     public GameObject gunFab;
     private GameObject gg;
     [HideInInspector] public Text urt;
+    [HideInInspector] public Text urt2;
 
     [HideInInspector] public int bulletDelay = -1;
     [HideInInspector] public bool fireTime;
     public int framesWaitAfterBox = 45;
-    [SerializeField] private int framesWaitTweenShots = 20;
+    [SerializeField] private int framesWaitTweenShots = 45;
     private int shotWaitCount = 0;
     [HideInInspector] public bool[] gunClip = new bool[6];
     [HideInInspector] public int clipPosition = 0;
@@ -31,10 +32,24 @@ public class BulletBox : MonoBehaviour
     private Renderer rend;
     private void Start()
     {
+        GameObject brgo = GameObject.Find("BulletRememberer");
+        BulletMember bmc = brgo.GetComponent<BulletMember>();
+        int bLeft = bmc.BulletsLeft();
+
+        if(bLeft < bulletCount)
+        {
+            bulletCount = bLeft;
+        }
+
         gg = Instantiate(gunFab, new Vector3(-0.41f, 0.65f, -8.57f), Quaternion.identity);
         rend = GetComponentInChildren<Renderer>();
+
         GameObject ur = GameObject.Find("You rolled");
         urt = ur.GetComponent<Text>();
+
+        GameObject gp = GameObject.Find("Get promoted");
+        urt2 = gp.GetComponent<Text>();
+
         GameObject lss = GameObject.Find("loadSoundSource");
         loadSound = lss.GetComponent<AudioSource>();
         GameObject css = GameObject.Find("clickSoundSource");
@@ -48,6 +63,29 @@ public class BulletBox : MonoBehaviour
         {
             gunClip[i] = false;
         }
+        MakeBulletText();
+
+        if(bulletCount == 0)
+        {
+            urt.text = "";
+            urt2.text = "We're out of bullets. Have a promotion.";
+            bmc.showDie = true;
+            bmc.ResetBullets();
+            fireTime = true;
+            shotWaitCount = 150;
+        }
+    }
+
+    public void MakeBulletText()
+    {
+        string theS = "s";
+
+        if (bulletCount == 1)
+        {
+            theS = "";
+        }
+
+        urt.text = "Take " + bulletCount + " bullet" + theS;
     }
 
     private void Update()
@@ -107,8 +145,6 @@ public class BulletBox : MonoBehaviour
 
     private void GunFire()
     {
-        int ayn = Random.Range(1, 6);
-
         if(gunClip[clipPosition])
         {
             fireSound.Play();

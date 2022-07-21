@@ -24,4 +24,9 @@ public class Reply : MonoBehaviour
         Cursor.SetCursor(null, Vector2.zero, cursorMode);
         pu.ReplyMessage();
     }
+
+    private void OnDestroy()
+    {
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+    }
 }

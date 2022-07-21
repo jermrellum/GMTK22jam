@@ -266,6 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 10
 --- !u!1001 &808845096753778485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -371,6 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 5
 --- !u!4 &915111609279326430 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -486,6 +488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 22
 --- !u!1001 &1491288174188603870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -596,6 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 30
 --- !u!1001 &1760723126745935271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -701,6 +705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 20
 --- !u!4 &2298490745066932812 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -811,6 +816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 14
 --- !u!4 &2231345202787734560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -921,6 +927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 7
 --- !u!4 &2062940986856558933 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -1036,6 +1043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 23
 --- !u!1001 &2505474460037352219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1146,6 +1154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 1
 --- !u!1001 &2951089383410522218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1251,6 +1260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 13
 --- !u!4 &3422411729703878529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -1361,6 +1371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 4
 --- !u!4 &2959544347563653440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -1476,6 +1487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 31
 --- !u!1001 &3651559450957816014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1586,6 +1598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 15
 --- !u!1001 &3841015967967046271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1696,6 +1709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 6
 --- !u!1001 &4172883727240438273
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1801,6 +1815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 8
 --- !u!4 &4495637897874097642 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -1911,6 +1926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 2
 --- !u!4 &4400876161470376027 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -2021,6 +2037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 29
 --- !u!4 &4374292981346193946 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -2131,6 +2148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 12
 --- !u!4 &4300305814622692755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -2246,6 +2264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 26
 --- !u!1001 &5077403696708306591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2356,6 +2375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 27
 --- !u!1001 &5588878592921780712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2461,6 +2481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 24
 --- !u!4 &5333693546188645891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -2576,6 +2597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 28
 --- !u!1001 &6224515414757948053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2686,6 +2708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 21
 --- !u!1001 &6289684336515462521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2796,6 +2819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 9
 --- !u!1001 &6593507288359925233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2901,6 +2925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 17
 --- !u!4 &6632234951449842202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -3016,6 +3041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 11
 --- !u!1001 &7101494839821141812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3126,6 +3152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 25
 --- !u!1001 &7570353346457908457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3231,6 +3258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 16
 --- !u!4 &7964041167701365506 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -3424,6 +3452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 18
 --- !u!1001 &8630998156388374824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3534,6 +3563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 3
 --- !u!1001 &8834137585813274635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3639,6 +3669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 19
 --- !u!4 &9012705786239821792 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}
@@ -3749,6 +3780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: dbd802f05abfb2341a17f57ae5b6ba0f, type: 3}
   bulletInRevolver: {fileID: 1476222953943148709, guid: fb9073e0866ab194ca039c7611598c39, type: 3}
+  bulletIdx: 0
 --- !u!4 &8806909450905663631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5f9fdeec985274a89fd5960083a900, type: 3}

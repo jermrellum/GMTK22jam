@@ -9,6 +9,20 @@ public class Bullet : MonoBehaviour
     public Texture2D cursorTexture;
     private BulletBox bb;
     [SerializeField] private GameObject bulletInRevolver;
+    [SerializeField] private int bulletIdx;
+
+    private BulletMember bmc;
+
+    private void Awake()
+    {
+        GameObject brgo = GameObject.Find("BulletRememberer");
+        bmc = brgo.GetComponent<BulletMember>();
+
+        if(!bmc.DoIExist(bulletIdx))
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -43,20 +57,15 @@ public class Bullet : MonoBehaviour
                 bb.bulletDelay = bb.framesWaitAfterBox;
             }
 
-            string theS = "s";
-
-            if (bb.bulletCount == 1)
-            {
-                theS = "";
-            }
-
-            bb.urt.text = "Take " + bb.bulletCount + " bullet" + theS;
+            bb.MakeBulletText();
 
             GameObject rvr = GameObject.Find("Revolver");
 
             Instantiate(bulletInRevolver, new Vector3(-0.4137f, 0.776136f, -9.235f), Quaternion.identity, rvr.transform);
 
             bb.ctfCount = bb.cylinderTurnFrames;
+
+            bmc.TakeBullet(bulletIdx);
 
             Destroy(this.gameObject);
         }

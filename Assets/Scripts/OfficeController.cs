@@ -10,6 +10,15 @@ public class OfficeController : MonoBehaviour
 
     [SerializeField] private GameObject popUpPrefab;
     [SerializeField] private GameObject bossPrefab;
+
+    [SerializeField] private float countdownMinProp;
+    [SerializeField] private float countdownMaxProp;
+    [SerializeField] private int countdownThreshold;
+
+    [SerializeField] private float mailAlerMinProp;
+    [SerializeField] private float mailAlerMaxProp;
+    [SerializeField] private int mailAlertThreshold;
+
     private GameObject screen;
     private int framesForCount = 540;
 
@@ -26,6 +35,17 @@ public class OfficeController : MonoBehaviour
 
     private AudioSource alertSound;
 
+    private void Awake()
+    {
+        GameObject die = GameObject.Find("Die");
+        GameObject brgo = GameObject.Find("BulletRememberer");
+        BulletMember bmc = brgo.GetComponent<BulletMember>();
+
+        if(!bmc.showDie)
+        {
+            Destroy(die);
+        }
+    }
 
     private void Start()
     {
@@ -76,16 +96,16 @@ public class OfficeController : MonoBehaviour
                 Popup pc = newpop.GetComponent<Popup>();
 
                 pc.countDown = framesForCount;
-                framesForCount = framesForCount * 11 / 13;
-                if (framesForCount < 30)
+                framesForCount = Random.Range((int)(framesForCount * countdownMinProp), (int)(framesForCount * countdownMaxProp));
+                if (framesForCount < countdownThreshold)
                 {
-                    framesForCount = 30;
+                    framesForCount = countdownThreshold;
                 }
 
-                cdtpMax = Random.Range(cdtpMax * 11 / 16, cdtpMax * 15 / 16);
-                if (cdtpMax < 6)
+                cdtpMax = Random.Range((int)(cdtpMax * mailAlerMinProp), (int)(cdtpMax * mailAlerMaxProp));
+                if (cdtpMax < mailAlertThreshold)
                 {
-                    cdtpMax = 6;
+                    cdtpMax = mailAlertThreshold;
                 }
                 countDownToPopup = cdtpMax;
             }
@@ -94,7 +114,6 @@ public class OfficeController : MonoBehaviour
 
     public void TriggerFailure()
     {
-        Debug.Log("gerf");
         if (!bossAppears)
         {
             fwobCount = framesWaitOnBoss;
