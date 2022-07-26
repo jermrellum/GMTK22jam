@@ -10,6 +10,7 @@ public class OfficeController : MonoBehaviour
 
     [SerializeField] private GameObject popUpPrefab;
     [SerializeField] private GameObject bossPrefab;
+    [SerializeField] private GameObject friendPrefab;
 
     [SerializeField] private float countdownMinProp;
     [SerializeField] private float countdownMaxProp;
@@ -18,6 +19,7 @@ public class OfficeController : MonoBehaviour
     [SerializeField] private float mailAlerMinProp;
     [SerializeField] private float mailAlerMaxProp;
     [SerializeField] private int mailAlertThreshold;
+    [SerializeField] private int repliesBeforeDud = 12;
 
     private GameObject screen;
     private int framesForCount = 540;
@@ -31,7 +33,10 @@ public class OfficeController : MonoBehaviour
     public int fwobCount = 0;
     private bool bossAppears = false;
 
+    private int repCount = 0;
+
     private int popcount = 0;
+    private BulletMember bmc;
 
     private AudioSource alertSound;
 
@@ -39,7 +44,8 @@ public class OfficeController : MonoBehaviour
     {
         GameObject die = GameObject.Find("Die");
         GameObject brgo = GameObject.Find("BulletRememberer");
-        BulletMember bmc = brgo.GetComponent<BulletMember>();
+        bmc = brgo.GetComponent<BulletMember>();
+        repCount = bmc.repliesCount;
 
         if(!bmc.showDie)
         {
@@ -74,12 +80,27 @@ public class OfficeController : MonoBehaviour
             }
             else if (countDownToPopup == 0)
             {
-                GameObject newpop = Instantiate(popUpPrefab, new Vector3(popX, popY, popZ), Quaternion.Euler(new Vector3(0.0f, popAY, 0.0f)), screen.transform);
+                bool friend = false;
+                GameObject toInst = popUpPrefab;
+                if(repCount % repliesBeforeDud == (repliesBeforeDud - 1))
+                {
+                    if (!bmc.firstRound)
+                    {
+                        toInst = friendPrefab;
+                        friend = true;
+                    }
+                    else
+                    {
+                        GenerateDud();
+                    }
+                    repCount = 0;
+                }
+                GameObject newpop = Instantiate(toInst, new Vector3(popX, popY, popZ), Quaternion.Euler(new Vector3(0.0f, popAY, 0.0f)), screen.transform);
 
                 popcount++;
 
-                float xMin = -3.0f;
-                float xMax = 3.0f;
+                float xMin = -2.9f;
+                float xMax = 2.9f;
 
                 float zMin = -3.3f;
                 float zMax = 4.0f;
@@ -87,15 +108,17 @@ public class OfficeController : MonoBehaviour
                 float xRand = Random.Range(xMin, xMax);
                 float zRand = Random.Range(zMin, zMax);
 
-                newpop.transform.localPosition = new Vector3(xRand, -0.6f + popcount * 0.001f, zRand);
+                newpop.transform.localPosition = new Vector3(xRand, -0.6f + popcount * 0.01f, zRand);
                 newpop.transform.localEulerAngles = new Vector3(-90.0f, 0.0f, 0.0f);
                 newpop.transform.localScale = new Vector3(3.0f, 1.37f, 1.37f);
 
                 alertSound.Play();
 
-                Popup pc = newpop.GetComponent<Popup>();
-
-                pc.countDown = framesForCount;
+                if (!friend)
+                {
+                    Popup pc = newpop.GetComponent<Popup>();
+                    pc.countDown = framesForCount;
+                }
                 framesForCount = Random.Range((int)(framesForCount * countdownMinProp), (int)(framesForCount * countdownMaxProp));
                 if (framesForCount < countdownThreshold)
                 {
@@ -112,6 +135,21 @@ public class OfficeController : MonoBehaviour
         }
     }
 
+    public int GenerateDud()
+    {
+        int liveIdx = bmc.FindRandomLive();
+        if(liveIdx >= 0)
+        {
+            bmc.Dudify(liveIdx);
+        }
+        return liveIdx;
+    }
+
+    public void IncRepCount()
+    {
+        repCount++;
+    }
+
     public void TriggerFailure()
     {
         if (!bossAppears)
@@ -119,6 +157,7 @@ public class OfficeController : MonoBehaviour
             fwobCount = framesWaitOnBoss;
             alertSound.Play();
 
+            bmc.repliesCount = repCount;
             GameObject bosspop = Instantiate(bossPrefab, new Vector3(popX, popY, popZ), Quaternion.Euler(new Vector3(0.0f, popAY, 0.0f)), screen.transform);
 
             bosspop.transform.localPosition = new Vector3(0.0f, -0.6f + popcount * 0.001f, 0.0f);

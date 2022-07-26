@@ -5,7 +5,7 @@ using UnityEngine;
 public class Popup : MonoBehaviour
 {
     [HideInInspector] public int countDown;
-    [SerializeField] private TextMesh countText;
+    [SerializeField] private TMPro.TextMeshPro countText;
     private OfficeController occ;
 
     private void Start()
@@ -20,6 +20,7 @@ public class Popup : MonoBehaviour
         AudioSource sendSnd = ssnd.GetComponent<AudioSource>();
 
         sendSnd.Play();
+        occ.IncRepCount();
 
         Destroy(this.gameObject);
     }

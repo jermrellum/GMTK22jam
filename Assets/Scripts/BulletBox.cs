@@ -9,6 +9,7 @@ public class BulletBox : MonoBehaviour
     [HideInInspector] public AudioSource loadSound;
     private AudioSource clickSound;
     private AudioSource fireSound;
+    private AudioSource dudSound;
     public GameObject gunFab;
     private GameObject gg;
     [HideInInspector] public Text urt;
@@ -19,8 +20,8 @@ public class BulletBox : MonoBehaviour
     public int framesWaitAfterBox = 45;
     [SerializeField] private int framesWaitTweenShots = 45;
     private int shotWaitCount = 0;
-    [HideInInspector] public bool[] gunClip = new bool[6];
-    [HideInInspector] public int clipPosition = 0;
+    public int[] gunClip;
+    public int clipPosition = 0;
     public int cylinderTurnFrames = 15;
     [HideInInspector] public int ctfCount = 0;
 
@@ -29,11 +30,13 @@ public class BulletBox : MonoBehaviour
     public int bulletCount = 1;
     public int initBulletCount = 1;
 
+    BulletMember bmc;
+
     private Renderer rend;
     private void Start()
     {
         GameObject brgo = GameObject.Find("BulletRememberer");
-        BulletMember bmc = brgo.GetComponent<BulletMember>();
+        bmc = brgo.GetComponent<BulletMember>();
         int bLeft = bmc.BulletsLeft();
 
         if(bLeft < bulletCount)
@@ -51,17 +54,20 @@ public class BulletBox : MonoBehaviour
         urt2 = gp.GetComponent<Text>();
 
         GameObject lss = GameObject.Find("loadSoundSource");
-        loadSound = lss.GetComponent<AudioSource>();
         GameObject css = GameObject.Find("clickSoundSource");
-        clickSound = css.GetComponent<AudioSource>();
         GameObject fss = GameObject.Find("fireSoundSource");
+        GameObject dss = GameObject.Find("dudSoundSource");
+
+        loadSound = lss.GetComponent<AudioSource>();    
+        clickSound = css.GetComponent<AudioSource>();
         fireSound = fss.GetComponent<AudioSource>();
+        dudSound = dss.GetComponent<AudioSource>();
 
         rvr = GameObject.Find("Revolver"); 
 
         for (int i=0; i<gunClip.Length; i++)
         {
-            gunClip[i] = false;
+            gunClip[i] = 0;
         }
         MakeBulletText();
 
@@ -132,6 +138,11 @@ public class BulletBox : MonoBehaviour
             fireTime = true;
 
             clipPosition = Random.Range(0, 6);
+            if(bmc.firstRound && gunClip[clipPosition] == 1)
+            {
+                clipPosition = Random.Range(0, 6); //reroll if death on firstround
+            }
+            bmc.firstRound = false;
         }
 
         if (fireTime)
@@ -145,13 +156,20 @@ public class BulletBox : MonoBehaviour
 
     private void GunFire()
     {
-        if(gunClip[clipPosition])
+        if(gunClip[clipPosition] == 1)
         {
             fireSound.Play();
             urt.text = "";
             shotWaitCount = -1;
             GameObject cam = GameObject.Find("Main Camera");
             cam.transform.position = new Vector3(0.0f, 0.0f, 9.0f);
+        }
+        else if(gunClip[clipPosition] == 2)
+        {
+            urt.text = "Lucky! It was a dud!";
+            clipPosition = (clipPosition + 1) % 6;
+            dudSound.Play();
+            shotWaitCount = framesWaitTweenShots * 2;
         }
         else
         {

@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     private BulletBox bb;
     [SerializeField] private GameObject bulletInRevolver;
     [SerializeField] private int bulletIdx;
+    private int dudStatus = 1; //1 live, 2 dud
 
     private BulletMember bmc;
 
@@ -22,6 +23,8 @@ public class Bullet : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        dudStatus = bmc.GetDudStatus(bulletIdx);
     }
 
     private void Start()
@@ -48,7 +51,7 @@ public class Bullet : MonoBehaviour
         {
             bb.bulletCount--;
             bb.loadSound.Play();
-            bb.gunClip[bb.clipPosition] = true;
+            bb.gunClip[bb.clipPosition] = dudStatus;
             bb.clipPosition++;
 
             if (bb.bulletCount == 0)
