@@ -99,7 +99,7 @@ public class OfficeController : MonoBehaviour
 
                 popcount++;
 
-                float xMin = -2.9f;
+                float xMin = -2.6f;
                 float xMax = 2.9f;
 
                 float zMin = -3.3f;
@@ -108,7 +108,7 @@ public class OfficeController : MonoBehaviour
                 float xRand = Random.Range(xMin, xMax);
                 float zRand = Random.Range(zMin, zMax);
 
-                newpop.transform.localPosition = new Vector3(xRand, -0.6f + popcount * 0.01f, zRand);
+                newpop.transform.localPosition = new Vector3(xRand, -0.6f + popcount * 0.02f, zRand);
                 newpop.transform.localEulerAngles = new Vector3(-90.0f, 0.0f, 0.0f);
                 newpop.transform.localScale = new Vector3(3.0f, 1.37f, 1.37f);
 
